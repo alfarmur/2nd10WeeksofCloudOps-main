@@ -15,7 +15,8 @@ const db = mysql.createConnection({
   host: process.env.DB_HOST ,
   user: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.PORT,
+  //port: process.env.PORT,
+  port: process.env.DB_PORT,   
   database: "test",
 });
 
@@ -76,7 +77,11 @@ app.put("/books/:id", (req, res) => {
     return res.json(data);
   });
 });
+const APP_PORT = process.env.APP_PORT || 3000;
 
-app.listen(80, () => {
-  console.log("Connected to backend.");
+app.listen(APP_PORT, "0.0.0.0", () => {
+  console.log(`Backend running on port ${APP_PORT}`);
 });
+//app.listen(80, () => {
+  //console.log("Connected to backend.");
+//});
